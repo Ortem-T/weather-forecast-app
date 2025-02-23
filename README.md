@@ -14,7 +14,7 @@ This is a weather forecast application built with React and TypeScript. It utili
 
 1. **Clone the repository**:
    ```
-   git clone <repository-url>
+   git clone https://github.com/Ortem-T/weather-forecast-app.git
    cd weather-forecast-app
    ```
 

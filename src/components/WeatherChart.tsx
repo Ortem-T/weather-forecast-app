@@ -85,6 +85,21 @@ const WeatherChart: React.FC<WeatherChartProps> = ({ cities }) => {
         }
     };
 
+    const formatTooltip = (value: number) => {
+        switch (dataType) {
+            case 'temperature':
+                return `${value} °C`;
+            case 'pressure':
+                return `${value} hPa`;
+            case 'humidity':
+                return `${value} %`;
+            case 'wind':
+                return `${value} m/s`;
+            default:
+                return value;
+        }
+    };
+
     return (
         <div>
             <div>
@@ -113,7 +128,7 @@ const WeatherChart: React.FC<WeatherChartProps> = ({ cities }) => {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="time" tick={{ fontSize: 10 }} tickFormatter={formatXAxis} label={{ value: 'Time', position: 'insideBottomRight', offset: -5 }} />
                         <YAxis label={{ value: getYAxisLabel(), angle: -90, position: 'insideLeft' }} />
-                        <Tooltip />
+                        <Tooltip formatter={formatTooltip} />
                         <Legend />
                         {cities.map((city, index) => (
                             <Line key={index} type="monotone" dataKey={`city${index}`} name={city} stroke={`#${Math.floor(Math.random()*16777215).toString(16)}`} />

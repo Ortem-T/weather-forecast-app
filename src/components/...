@@ -1,0 +1,38 @@
+// This file contains a React functional component that renders an input field for users to enter a city name. It handles user input and triggers the weather data fetch.
+
+import React, { useState } from 'react';
+
+interface CityInputProps {
+    onCityChange: (city: string) => void;
+}
+
+const CityInput: React.FC<CityInputProps> = ({ onCityChange }) => {
+    const [city, setCity] = useState('');
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCity(event.target.value);
+    };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (city) {
+            onCityChange(city);
+            setCity('');
+        }
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                value={city}
+                onChange={handleInputChange}
+                placeholder="Enter city name"
+                required
+            />
+            <button type="submit">Get Weather</button>
+        </form>
+    );
+};
+
+export default CityInput;

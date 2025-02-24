@@ -16,7 +16,7 @@ const App: React.FC = () => {
                 if (response.data.length > 0) {
                     const city = response.data[0].name;
                     addCity(city);
-                    setSelectedCities([city]); // Добавляем город в выбранные города только при первой загрузке
+                    setSelectedCities([city]);
                 }
             } catch (error) {
                 console.error('Error fetching city by location:', error);
